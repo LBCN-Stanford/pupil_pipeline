@@ -64,4 +64,5 @@ def qualitycheck(raw, out_dir='', base_name='', **params):
     plot_raw(raw, out_dir=out_dir, base_name=base_name)
     check_outliers(raw, out_dir=out_dir, base_name=base_name)
     calculate_stats(raw, out_dir=out_dir, base_name=base_name)
-    raw.to_csv(make_path('outliers_removed', '.csv', out_dir=out_dir, base_name=base_name), index=False)
+    raw.to_csv(make_path('outliers_removed', '.csv', out_dir=out_dir,
+                         base_name=base_name), index=False)

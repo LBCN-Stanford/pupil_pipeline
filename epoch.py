@@ -163,8 +163,10 @@ def epoch(pupil_data, events_path, sample_rate=250, epoch_time=200,
         epoched.num_rejected.append(rejected)
 
     # Save .mat and .pkl of epoched data
-    spio.savemat(make_path('epoched', '.mat', out_dir=out_dir, base_name=base_name), {'epoched':epoched})
-    save_pkl(make_path('epoched', '.pkl', out_dir=out_dir, base_name=base_name), epoched)
+    spio.savemat(make_path('epoched', '.mat', out_dir=out_dir,
+                           base_name=base_name), {'epoched':epoched})
+    save_pkl(make_path('epoched', '.pkl', out_dir=out_dir,
+                       base_name=base_name), epoched)
 
     return epoched
 

@@ -4,8 +4,6 @@ File that reads in the pupil diameter data
 import pandas as pd
 import numpy as np
 
-
-
 def read_pupil(path):
     """
     Given a path to the pupil diameter data, returns a Dataframe with the
