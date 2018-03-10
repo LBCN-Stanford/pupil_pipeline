@@ -11,5 +11,3 @@ from epoch import Epoched
 
 with open('epoched.pkl', 'rb') as f:
 	x= pickle.load(f)
-
-print(1)

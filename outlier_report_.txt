@@ -1,2 +1,0 @@
-62060 out of 105203 samples were within acceptable range(1.5 - 5)
-Percentage of usable data: 58.99071319258956%

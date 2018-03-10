@@ -31,8 +31,7 @@ def check_outliers(raw, impossible_upper=5, impossible_lower=1.5, out_dir='', ba
     count = raw.Pupil.count()
     string = '{} out of {} samples were within acceptable range({} - {})\nPercentage of usable data: {}%'.format(count, nsamples, impossible_lower, impossible_upper, count/nsamples*100)
     print(string)
-
-    with open(make_path('outlier_report', '.txt', **params), 'w') as f:
+    with open(make_path('outlier_report', '.txt', base_name=base_name, out_dir=out_dir, **params), 'w') as f:
         f.write(string)
 
 def calculate_stats(raw, fname='descriptive_stats',plot=True, out_dir='', base_name='', **params):
@@ -50,7 +49,7 @@ def calculate_stats(raw, fname='descriptive_stats',plot=True, out_dir='', base_n
         plt.axhline(stats['75%'], color='g', label='75%')
         ax.set(xlabel="Time", ylabel="Pupil Diameter (mm)")
         plt.legend()
-        plt.savefig(make_path('raw_plot_with_stats_outliers_removed', '.png', 
+        plt.savefig(make_path('raw_plot_with_stats_outliers_removed', '.png',
                             out_dir=out_dir, base_name=base_name))
         plt.cla()
         plt.clf()
