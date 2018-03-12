@@ -3,6 +3,7 @@ from scipy import interpolate
 from qualitycheck import calculate_stats
 from misc import make_path
 
+
 def make_blink_list(pupil_data):
     '''
     Takes in the pupil_data dataframe and returns a list of tuples of the following
@@ -13,9 +14,12 @@ def make_blink_list(pupil_data):
 
     start = None
     for j, i in enumerate(nans.index.values):
-        if start == None: start = i
-        if j + 1 == len(nans.index.values): break
-        if i + 1 != nans.index.values[j + 1]: # If the next index was not a nan
+        if start is None:
+            start = i
+        if j + 1 == len(nans.index.values):
+            break
+        # If the next index was not a nan
+        if i + 1 != nans.index.values[j + 1]:
             blink_list.append((start - 1, i + 1))
             start = None
 
@@ -41,19 +45,19 @@ def interpolate_blinks(pupil_data, min_blink_time=20, max_blink_time=500, sample
     min_blink = int(min_blink_time * sample_rate / 1000)
     max_blink = int(max_blink_time * sample_rate / 1000)
 
-    for i2, i3 in blink_list: # For each blink...
-        blink_len = i3-i2-1
-        if blink_len < min_blink: # If too short for a blink just front fill
-            pupil_data.loc[np.arange(i2 + 1, i3, 1), 'Pupil'] = pupil_data.Pupil.iat[i2]
-        elif blink_len < max_blink: # Interpolate blinks...
+    for i2, i3 in blink_list:  # For each blink...
+        blink_len = i3 - i2 - 1
+        if blink_len < min_blink:  # If too short for a blink just front fill
+            pupil_data.loc[np.arange(i2 + 1, i3, 1),
+                           'Pupil'] = pupil_data.Pupil.iat[i2]
+        elif blink_len < max_blink:  # Interpolate blinks...
             i1, i4 = 2 * i2 - i3, 2 * i3 - i2
             indices = [i1, i2, i3, i4]
-            if i1 > 0 and i4 < len(pupil_data): # ...if its in range...
+            if i1 > 0 and i4 < len(pupil_data):  # ...if its in range...
                 samples = list(map(lambda x: pupil_data.Pupil.iat[x], indices))
                 tck = interpolate.splrep(indices, samples)
                 i_new = np.arange(i2 + 1, i3, 1)
                 pupil_data.loc[i_new, 'Pupil'] = interpolate.splev(i_new, tck)
-
 
 
 def preprocess(pupil_data, out_dir='', base_name='', **params):
@@ -71,7 +75,7 @@ def preprocess(pupil_data, out_dir='', base_name='', **params):
     calculate_stats(pupil_data, fname='descriptive_stats_post_preprocessing',
                     plot=False, out_dir=out_dir, base_name=base_name)
 
-    t0=pupil_data.Time.iloc[0]
+    t0 = pupil_data.Time.iloc[0]
     pupil_data['Time'] = pupil_data.Time.apply(lambda x: x - t0)
     pupil_data.to_csv(make_path('preprocessed', '.csv', out_dir=out_dir,
-                        base_name=base_name), index=False)
+                                base_name=base_name), index=False)

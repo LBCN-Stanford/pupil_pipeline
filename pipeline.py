@@ -12,7 +12,8 @@ if __name__ == '__main__':
 
     params = get_params(sys.argv)
     eye_paths, events_path = get_files(**params)
-    assert len(eye_paths) == len(events_path), 'You must select the same number of pupil and event files.'
+    assert len(eye_paths) == len(
+        events_path), 'You must select the same number of pupil and event files.'
 
     t0 = time.time()
     for eye_path, events_path in zip(eye_paths, events_path):

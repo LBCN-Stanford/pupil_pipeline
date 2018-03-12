@@ -4,6 +4,7 @@ import os
 import datetime
 import pickle
 
+
 def get_files(choose_files=True, **params):
     if choose_files:
         eye_paths = select_files('Select Pupil Data')
@@ -13,17 +14,21 @@ def get_files(choose_files=True, **params):
         events_paths = params['events_paths']
     return eye_paths, events_paths
 
+
 def select_files(prompt='Select your files'):
     '''Asks user to select files and return a tuple of paths'''
     root = tk.Tk()
     root.withdraw()
     return filedialog.askopenfilenames(title=prompt)
 
+
 def make_output_folder(path, base):
     '''Creates a folder for the pipeline output'''
-    out = os.path.join(path, 'pipeline_output_' + base + '_' + str(datetime.datetime.now()))
+    out = os.path.join(path, 'pipeline_output_' + base +
+                       '_' + str(datetime.datetime.now()))
     os.makedirs(out)
     return out
+
 
 def folder_setup(eye_path, params):
     '''
@@ -35,8 +40,10 @@ def folder_setup(eye_path, params):
     if params['base_name'] == '':
         params['base_name'] = os.path.splitext(os.path.basename(eye_path))[0]
     if params['out_dir'] == '':
-        out_dir = make_output_folder(os.path.dirname(eye_path), params['base_name'])
+        out_dir = make_output_folder(
+            os.path.dirname(eye_path), params['base_name'])
         params['out_dir'] = out_dir
+
 
 def make_path(name, ext, out_dir='', base_name='', **kwargs):
     '''
@@ -45,9 +52,11 @@ def make_path(name, ext, out_dir='', base_name='', **kwargs):
     '''
     return os.path.join(out_dir, name + '_' + base_name + ext)
 
+
 def save_pkl(path, obj):
     with open(path, 'wb') as f:
         pickle.dump(obj, f)
+
 
 def load_pkl(path):
     with open(path, 'rb') as f:

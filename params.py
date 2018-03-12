@@ -11,19 +11,19 @@ def get_params(argv):
     check_valid(p)
     return p
 
+
 # TODO do some checks to make sure the parameters are valid!
 def check_valid(p):
-	pass
+    pass
 
 
 def save_params(params):
-	out_dir, base_name = params['out_dir'], params['base_name']
-	with open(make_path('parameters', '.py', **params), 'w') as f:
-		f.write('params = {}\n')
-		for k, v in params.items():
-			if type(v) == str:
-				f.write("params['" + str(k) + "']" + " = " + "'" + str(v) + "'" + '\n')
-			else: 
-				f.write("params['" + str(k) + "']" + " = " + str(v)+'\n')
-		
-
+    out_dir, base_name = params['out_dir'], params['base_name']
+    with open(make_path('parameters', '.py', **params), 'w') as f:
+        f.write('params = {}\n')
+        for k, v in params.items():
+            if type(v) == str:
+                f.write("params['" + str(k) + "']" +
+                        " = " + "'" + str(v) + "'" + '\n')
+            else:
+                f.write("params['" + str(k) + "']" + " = " + str(v) + '\n')
