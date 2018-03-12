@@ -1,6 +1,4 @@
-import os
 import numpy as np
-from timeit import default_timer as timer
 from misc import make_path
 import matplotlib
 matplotlib.use("TkAgg")

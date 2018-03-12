@@ -1,3 +1,5 @@
+''' Parameters for the pipeline'''
+
 params = {}
 
 # Outputs of the pipeline will contain this as a substring

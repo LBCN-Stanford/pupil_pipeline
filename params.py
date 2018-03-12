@@ -1,4 +1,3 @@
-import pandas as pd
 import importlib
 from misc import make_path
 
@@ -12,14 +11,14 @@ def get_params(argv):
     return p
 
 
-# TODO do some checks to make sure the parameters are valid!
+# TODO do some checks to make sure the praeters are valid!
 def check_valid(p):
     pass
 
 
 def save_params(params):
     out_dir, base_name = params['out_dir'], params['base_name']
-    with open(make_path('parameters', '.py', **params), 'w') as f:
+    with open(make_path('parameters', '.py', out_dir=out_dir, base_name=base_name, **params), 'w') as f:
         f.write('params = {}\n')
         for k, v in params.items():
             if type(v) == str:
