@@ -13,6 +13,7 @@ def get_params(argv):
 
 # TODO do some checks to make sure the praeters are valid!
 def check_valid(p):
+    # TODOOOO
     pass
 
 
