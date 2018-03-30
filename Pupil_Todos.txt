@@ -1,7 +1,10 @@
+- add units (x and y labels) to plots
 
-- plot pupil traces as lines, not dots
+- add the indices of the excluded trials to the output
 
 - allow the baseline time window to be post-stimulus onset
+
+- include comment about how color coding works
 
 - enable analysis of trials combined across multiple runs
 
@@ -9,10 +12,4 @@
 
 - explain interpolation method in tutorial
 
-- add units (x and y labels) to plots
-
-- add the indices of the excluded trials to the output
-
 - create an option to normalize data within-trial AFTER epoching step (email Aaron to get the options that he wants; normalization is critical for across-patient comparison)
-
-- include comment about how color coding works

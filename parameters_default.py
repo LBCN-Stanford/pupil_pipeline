@@ -49,8 +49,8 @@ params['back_time'] = 60
 # List of conditions to be plotted, or 'all' for all conditions
 params['conds_to_plot'] = 'all'
 
-# List of colors (in hex) to plot. NOTE you need to add to this
-# if you're plotting more than 10 conditions.
+# List of colors (in hex) to plot. Google 'color picker to help find hex values'
+# NOTE you need to add to this if you're plotting more than 10 conditions.
 params['plot_colors'] = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
 
 # Style of each line to plot. See:

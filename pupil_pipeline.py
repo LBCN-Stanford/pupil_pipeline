@@ -1,6 +1,6 @@
 import sys
 from params import save_params, get_params
-from misc import select_files, folder_setup, get_files
+from misc import folder_setup, get_files
 from qualitycheck import qualitycheck
 from readpupil import read_pupil
 from preprocess import preprocess

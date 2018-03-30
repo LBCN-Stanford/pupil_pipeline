@@ -10,8 +10,9 @@ def plot_raw(raw, name='raw_plot', title='Raw Data Plot', out_dir='', base_name=
     Creates a scatter plot from the raw data and saves it to a file.
     Takes in the dataframe and requires params['out_dir'], and params['base_name']
     '''
-    ax = raw.plot(x='Time', y='Pupil', title=title)
-    # ax = raw.plot(x='Time', y='Pupil', kind='scatter', title=title)
+    s = [4 for _ in range(len(raw))]
+    # ax = raw.plot(x='Time', y='Pupil', title=title)
+    ax = raw.plot(x='Time', y='Pupil', kind='scatter', title=title, s=s)
     ax.set(xlabel="Time", ylabel="Pupil Diameter (mm)")
     plt.savefig(make_path(name, '.png', out_dir=out_dir,
                           base_name=base_name, **params))
@@ -47,7 +48,7 @@ def calculate_stats(raw, fname='descriptive_stats', plot=True, out_dir='', base_
     '''
     stats = raw.Pupil.describe()
     if plot:
-        ax = raw.plot(x='Time', y='Pupil', kind='scatter',
+        ax = raw.plot(x='Time', y='Pupil',
                       title='Raw Data (Outliers Removed)')
         plt.axhline(stats['mean'], color='r', label='mean')
         plt.axhline(stats['25%'], color='g', label='25%')
