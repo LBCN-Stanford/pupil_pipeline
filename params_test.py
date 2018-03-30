@@ -11,14 +11,14 @@ params['base_name'] = ''
 params['out_dir'] = ''
 
 # True if you want to select the files with a GUI
-params['choose_files'] = True
+params['choose_files'] = False
 
 # List of paths for pupil_data relative to the main folder
 # Note: only effective if choose_files is False
-params['eye_paths'] = ['/home/harrysha/Dropbox/pupil/data/S18_120/Run2/S18_120-pupil_data-run2.xlsx']
+params['eye_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run2/S18_120-pupil_data-run2.xlsx']
 
 # Same as eye_paths for the events files
-params['events_paths'] = ['/home/harrysha/Dropbox/pupil/data/S18_120/Run2/events.mat']
+params['events_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run2/events.mat']
 
 # Filter samples greater than this value (mm)
 params['impossible_upper'] = 5
