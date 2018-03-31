@@ -1,7 +1,8 @@
 - enable analysis of trials combined across multiple runs
 
-- create tutorial document
 
 - explain interpolation method in tutorial
 
 - create an option to normalize data within-trial AFTER epoching step (email Aaron to get the options that he wants; normalization is critical for across-patient comparison)
+
+- work on tutorial document

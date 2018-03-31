@@ -35,8 +35,12 @@ params['sample_rate'] = 250
 
 # 'no' for no baseline
 # an integer, x, to use the average value of x seconds before event as baseline
+# use a negative value for x to use x seconds after the event as baseline
 # a tuple('cond', a, duration) to use the value from the previous event of the condition at
 # index a. Takes the average duration seconds after the event.
+# Examples: params['baseline_type'] = 'no'
+# params['baseline_type'] = 200
+# params['baseline_type'] = ('cond', 1, duration)
 params['baseline_type'] = 'no'
 
 # Number of milliseconds to epoch after trial onset (ms)

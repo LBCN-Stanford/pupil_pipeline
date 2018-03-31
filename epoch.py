@@ -9,7 +9,8 @@ import os
 
 
 def read_events(fname, p_first):
-    ''' Reads and aligns the events file.
+    '''
+    Reads and aligns the events file.
     Arguments:
         fname: which should be a .mat file of the events
                 format (see tutorial)
@@ -41,10 +42,10 @@ def time_to_samples(time, sample_rate=250):
 
 
 def get_nsamples(sample_rate=250, epoch_time=200, back_time=60, **params):
-    '''Returns the number of samples to epoch given the sample_rate
+    '''
+    Returns the number of samples to epoch given the sample_rate
     and epoch time in milliseconds.
     '''
-    # TODO: Replace
     return (int(sample_rate * back_time / 1000),
             int(sample_rate * epoch_time / 1000))
 
@@ -60,7 +61,8 @@ def get_nearest_ind(pupil_events, time, threshold=20):
 
 
 class Epoched:
-    """ An object that stored information about the epoched data
+    """
+    An object that stored information about the epoched data
     Attributes:
         matrix: (n_categs x n_samples x n_trials) of pupil
                 diameter data. First dimension is the condition
