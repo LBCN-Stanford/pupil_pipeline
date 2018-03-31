@@ -1,10 +1,6 @@
-- add units (x and y labels) to plots
-
 - add the indices of the excluded trials to the output
 
 - allow the baseline time window to be post-stimulus onset
-
-- include comment about how color coding works
 
 - enable analysis of trials combined across multiple runs
 

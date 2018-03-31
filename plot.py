@@ -18,7 +18,7 @@ def plot_conds(epoched, conds_to_plot='all', plot_colors=def_cols,
                plot_style=def_style, plot_error=True, sample_rate=250,
                back_time=60, plot_title='Pupil Diameter',
                plot_fname='pupil_diameter_plot',
-               out_dir='', base_name='', **params):
+               out_dir='', base_name='', y_label='', **params):
     '''
     Averages across trials in each condition and saves a plot
 
@@ -69,7 +69,10 @@ def plot_conds(epoched, conds_to_plot='all', plot_colors=def_cols,
             ax.fill_between(x, y - err, y + err,
                             alpha=0.25, color=plot_colors[count])
 
+
     # Formatting...
+    ax.set_xlabel('Time (ms)')
+    ax.set_ylabel(y_label)
     plt.xlim((x[0], x[-1]))
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.9, box.height])

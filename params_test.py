@@ -65,5 +65,8 @@ params['plot_error'] = True
 # Title of the plot
 params['plot_title'] = 'Pupil Diameter'
 
+# Y axis label
+params['y_label'] = 'Pupil diameter (mm)'
+
 # File name of the plot
 params['plot_fname'] = 'pupil_diameter_plot'

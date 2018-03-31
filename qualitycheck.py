@@ -54,7 +54,7 @@ def calculate_stats(raw, fname='descriptive_stats', plot=True, out_dir='', base_
         plt.axhline(stats['25%'], color='g', label='25%')
         plt.axhline(stats['50%'], color='g', label='median')
         plt.axhline(stats['75%'], color='g', label='75%')
-        ax.set(xlabel="Time", ylabel="Pupil Diameter (mm)")
+        ax.set(xlabel="Time (ms)", ylabel="Pupil Diameter (mm)")
         plt.legend()
         plt.savefig(make_path('raw_plot_with_stats_outliers_removed', '.png',
                               out_dir=out_dir, base_name=base_name))
