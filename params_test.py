@@ -15,12 +15,12 @@ params['choose_files'] = False
 
 # List of paths for pupil_data relative to the main folder
 # Note: only effective if choose_files is False
-# params['eye_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run1/S18_120-pupil_data-run1.xlsx']
-params['eye_paths'] = ['/home/harrysha/Dropbox/data/Reappraisal/P28.txt']
+params['eye_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run1/S18_120-pupil_data-run1.xlsx']
+# params['eye_paths'] = ['/home/harrysha/Dropbox/data/Reappraisal/P28.txt']
 
 # Same as eye_paths for the events files
-# params['events_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run1/events.mat']
-params['events_paths'] = ['/home/harrysha/Dropbox/data/Orderdata/test.mat']
+params['events_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run1/events.mat']
+# params['events_paths'] = ['/home/harrysha/Dropbox/data/Orderdata/test.mat']
 
 # Filter samples greater than this value (mm)
 params['impossible_upper'] = 5
@@ -41,7 +41,7 @@ params['sample_rate'] = 250
 # an integer, x, to use the average value of x seconds before event as baseline
 # a tuple('cond', a, duration) to use the value from the previous event of the condition at
 # index a. Takes the average duration seconds after the event.
-params['baseline_type'] = ('cond', 0, 900)
+params['baseline_type'] = 200
 
 # Number of milliseconds to epoch after trial onset (ms)
 params['epoch_time'] = 2500

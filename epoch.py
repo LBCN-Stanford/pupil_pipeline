@@ -92,8 +92,12 @@ def get_baseline(pupil_data, onset, baseline_type='no', sample_rate=250, bl_even
         bl_samples = time_to_samples(baseline_type, sample_rate)
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            return np.nanmean(pupil_data.Pupil.iloc[onset - bl_samples - 1:onset - 1].values)
-    else:
+            if baseline_type >= 0:
+                return np.nanmean(pupil_data.Pupil.iloc[onset - bl_samples - 1:onset - 1].values)
+            else:
+                return np.nanmean(pupil_data.Pupil.iloc[onset + 1 :onset - bl_samples + 1].values)
+
+    else: # By condition
         difference = bl_events.Time - pupil_data.Time.iat[onset]
         difference = difference[difference <= 0]
         if len(difference) == 0:

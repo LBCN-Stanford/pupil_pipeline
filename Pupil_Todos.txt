@@ -1,7 +1,3 @@
-- add the indices of the excluded trials to the output
-
-- allow the baseline time window to be post-stimulus onset
-
 - enable analysis of trials combined across multiple runs
 
 - create tutorial document
