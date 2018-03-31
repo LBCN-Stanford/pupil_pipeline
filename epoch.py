@@ -66,10 +66,10 @@ class Epoched:
                 diameter data. First dimension is the condition
                 second is the 'time' and third is the trial
         names: a list of names of conditions
-        num_rejected: a list of numbers of rejected trials
-        num_trials: a list of number of trials.
-        n_samples: number of samples forward
+        num_rejected: a list of numbers of rejected trials for each condition
+        num_trials: a list of number of number of trials in each condition
         n_categs: number of categories
+        n_forwardsamples: number of samples forward
         n_backsamples: number of samples before onset
         total_samples: total number of samples per epoch
     """
@@ -78,9 +78,11 @@ class Epoched:
         self.total_samples = n_samples[0] + n_samples[1]
         self.matrix = np.empty((n_categs, self.total_samples, n_trials))
         self.matrix[:] = np.nan
-        self.n_categs, self.n_samples, self.n_backsamples = n_categs, n_samples[
+        self.n_categs, self.n_forwardsamples, self.n_backsamples = n_categs, n_samples[
             1], n_samples[0]
         self.names, self.num_trials, self.num_rejected = [], [], []
+        self.rejected = {}
+
 
 
 def get_baseline(pupil_data, onset, baseline_type='no', sample_rate=250, bl_events=None):
@@ -153,6 +155,7 @@ def epoch(pupil_data, events_path, sample_rate=250, epoch_time=200,
         # +1 to exclude the content sample, which is out of sync.
         onsets = list(map(lambda x: get_nearest_ind(
             pupil_events, x) + 1, category.start))
+        rejected_inds = []
         rejected = 0
         for t, onset in enumerate(onsets):
             # Note the -1 to avoid the content sample
@@ -164,13 +167,15 @@ def epoch(pupil_data, events_path, sample_rate=250, epoch_time=200,
                 pupil_data, onset, baseline_type, sample_rate, bl_events)
             trial = np.concatenate((pre, post)) - baseline
 
-            if np.isnan(np.sum(trial)):
-                rejected += 1  # Checks if there is a nan
+            if np.isnan(np.sum(trial)): # Checks if there is a nan
+                rejected_inds.append(t)
+                rejected += 1
             elif len(trial) == sum(samples_per_epoch):
                 epoched.matrix[c, :, t - rejected] = trial
 
-        epoched.num_trials.append(len(onsets) - rejected)
+        epoched.num_trials.append(len(onsets))
         epoched.num_rejected.append(rejected)
+        epoched.rejected[category.name] = rejected_inds
 
     # Save .mat and .pkl of epoched data
     spio.savemat(make_path('epoched', '.mat', out_dir=out_dir,

@@ -15,10 +15,12 @@ params['choose_files'] = False
 
 # List of paths for pupil_data relative to the main folder
 # Note: only effective if choose_files is False
-params['eye_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run2/S18_120-pupil_data-run2.xlsx']
+# params['eye_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run1/S18_120-pupil_data-run1.xlsx']
+params['eye_paths'] = ['/home/harrysha/Dropbox/data/Reappraisal/P28.txt']
 
 # Same as eye_paths for the events files
-params['events_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run2/events.mat']
+# params['events_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run1/events.mat']
+params['events_paths'] = ['/home/harrysha/Dropbox/data/Orderdata/test.mat']
 
 # Filter samples greater than this value (mm)
 params['impossible_upper'] = 5
