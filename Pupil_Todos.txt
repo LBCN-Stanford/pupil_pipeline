@@ -6,3 +6,5 @@
 - create an option to normalize data within-trial AFTER epoching step (email Aaron to get the options that he wants; normalization is critical for across-patient comparison)
 
 - work on tutorial document
+
+- Do stuff
