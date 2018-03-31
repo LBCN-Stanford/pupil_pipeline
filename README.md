@@ -1,2 +1,2 @@
 # pupil_pipline
-Tutoria (work in progress): https://www.overleaf.com/read/htntfwkhywbc
+Tutorial (work in progress): https://www.overleaf.com/read/htntfwkhywbc
