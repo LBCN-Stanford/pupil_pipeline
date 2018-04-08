@@ -77,6 +77,7 @@ class Epoched:
     """
 
     def __init__(self, n_categs, n_samples, n_trials):
+        self.n_samples = n_samples
         self.total_samples = n_samples[0] + n_samples[1]
         self.matrix = np.empty((n_categs, self.total_samples, n_trials))
         self.matrix[:] = np.nan

@@ -21,6 +21,10 @@ def select_files(prompt='Select your files'):
     root.withdraw()
     return filedialog.askopenfilenames(title=prompt)
 
+def select_folder(prompt='Select your folder'):
+    root = tk.Tk()
+    root.withdraw()
+    return filedialog.askdirectory(title=prompt)
 
 def make_output_folder(path, base):
     '''Creates a folder for the pipeline output'''
