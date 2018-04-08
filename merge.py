@@ -15,7 +15,7 @@ def merge(folder):
 #TODO set the new params and read them...
 if __name__ == '__main__':
     params = get_params(sys.argv)
-    params[out_dir] = sys.argv[2]
-    params[base_name] = os.path.basename(os.path.normpath(sys.argv[2]))
+    params["out_dir"] = sys.argv[2]
+    params["base_name"] = os.path.basename(os.path.normpath(sys.argv[2]))
     merge(argv[1])
     save_params(params)

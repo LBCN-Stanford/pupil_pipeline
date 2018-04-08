@@ -1,3 +1,8 @@
+COMPLETE GATHER
+COMPLETE MERGE
+DO THE NORMALIZATION
+DO WORK ON TUTORIAL
+
 - enable analysis of trials combined across multiple runs
 
 - create an option to normalize data within-trial AFTER epoching step (email Aaron to get the options that he wants; normalization is critical for across-patient comparison)
