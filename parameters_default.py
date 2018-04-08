@@ -50,8 +50,8 @@ params['epoch_time'] = 200
 # Multiple of 4 please :)
 params['back_time'] = 60
 
-# List of conditions to be plotted, or 'all' for all conditions
-params['conds_to_plot'] = 'all'
+# List of conditions (indices) to be plotted, or 'all' for all conditions
+params['conds_to_plot'] = [0, 1, 2, 3, 4, 5, 6]
 
 # List of colors (in hex) to plot. Google 'color picker to help find hex values'
 # NOTE you need to add to this if you're plotting more than 10 conditions.
@@ -72,3 +72,8 @@ params['y_label'] = 'Pupil diameter (mm)'
 
 # File name of the plot
 params['plot_fname'] = 'pupil_diameter_plot'
+
+# Used in merge. 'trial' to combine at a trial level. i.e. imagine all the
+# trials came from a single run. 'run' to combine at the run level (combined
+# the averages)
+params['combine_type'] = 'run'

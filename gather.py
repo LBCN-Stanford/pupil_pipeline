@@ -9,10 +9,10 @@ from shutil import copy2
 import sys
 from misc import select_folder
 
-def gather(parent, out_dir):
+def gather(parent, out_dir, ext='pkl'):
     for root, dirs, files in os.walk(parent):
         for file in files:
-            if 'epoched' in file and 'pkl' in file:
+            if 'epoched' in file and ext in file:
                 if not os.path.exists(os.path.join(out_dir, file)):
                     copy2(os.path.join(root, file), out_dir)
 
