@@ -21,6 +21,7 @@ if __name__ == '__main__':
         pupil_data = read_pupil(eye_path)
         qualitycheck(pupil_data, **params)
         preprocess(pupil_data, **params)
+
         epoched = epoch(pupil_data, events_path, **params)
         plot_conds(epoched, **params)
         save_params(params)

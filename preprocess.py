@@ -3,7 +3,6 @@ from scipy import interpolate
 from qualitycheck import calculate_stats
 from misc import make_path
 
-
 def make_blink_list(pupil_data):
     '''
     Takes in the pupil_data dataframe and returns a list of tuples of the following
@@ -59,8 +58,12 @@ def interpolate_blinks(pupil_data, min_blink_time=20, max_blink_time=500, sample
                 i_new = np.arange(i2 + 1, i3, 1)
                 pupil_data.loc[i_new, 'Pupil'] = interpolate.splev(i_new, tck)
 
+def normalize_pupil(pupil_data):
+    mean = np.nanmean(pupil_data.Pupil.values)
+    std = np.nanstd(pupil_data.Pupil.values)
+    pupil_data['Pupil'] = pupil_data.Pupil.apply(lambda x: (x - mean)/std)
 
-def preprocess(pupil_data, out_dir='', base_name='', **params):
+def preprocess(pupil_data, out_dir='', base_name='', normalize=False, **params):
     '''
     Interpolates blinks, and sets the start of the pupil recording to 0.
     Saves files.
@@ -77,5 +80,8 @@ def preprocess(pupil_data, out_dir='', base_name='', **params):
 
     t0 = pupil_data.Time.iloc[0]
     pupil_data['Time'] = pupil_data.Time.apply(lambda x: x - t0)
+    if normalize: normalize_pupil(pupil_data)
+    print(np.nanstd(pupil_data.Pupil.values))
+
     pupil_data.to_csv(make_path('preprocessed', '.csv', out_dir=out_dir,
                                 base_name=base_name), index=False)

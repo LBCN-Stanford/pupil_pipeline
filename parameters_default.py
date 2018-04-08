@@ -24,6 +24,8 @@ params['impossible_upper'] = 5
 # Filter samples below this value (mm)
 params['impossible_lower'] = 1.5
 
+params['normalize'] = True
+
 # Sections with zeros that are below this threshold will be interpolated (ms)
 params['max_blink_time'] = 500
 
@@ -51,7 +53,7 @@ params['epoch_time'] = 200
 params['back_time'] = 60
 
 # List of conditions (indices) to be plotted, or 'all' for all conditions
-params['conds_to_plot'] = [0, 1, 2, 3, 4, 5, 6]
+params['conds_to_plot'] = 'all'
 
 # List of colors (in hex) to plot. Google 'color picker to help find hex values'
 # NOTE you need to add to this if you're plotting more than 10 conditions.

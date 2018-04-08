@@ -18,7 +18,9 @@ def merge(gather_dir=os.getcwd(), combine_type='run', base_name='',
         combine_type: 'run' to combine averages of each run
                       'trial' to combine every trial
     Outputs:
-        merged.pkl, merged.mat
+        merged.pkl, merged.mat containing the merged Epoched object
+        A plot is also generated
+
     """
     files = [f for f in os.listdir(gather_dir) if 'pkl' in f and 'epoched' in f]
     merged = None
