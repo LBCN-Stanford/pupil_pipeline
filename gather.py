@@ -9,7 +9,7 @@ from shutil import copy2
 import sys
 from misc import select_folder
 
-def gather(parent, out_dir, ext='pkl'):
+def gather(parent, out_dir, ext='mat'):
     for root, dirs, files in os.walk(parent):
         for file in files:
             if 'epoched' in file and ext in file:

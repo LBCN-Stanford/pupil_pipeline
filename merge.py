@@ -1,7 +1,7 @@
 import sys
 from params import save_params, get_params
 from misc import select_folder, load_pkl, save_pkl, make_path
-from epoch import Epoched
+from epoch import Epoched, read_epoch
 from plot import plot_conds
 import os
 import numpy as np
@@ -22,10 +22,11 @@ def merge(gather_dir=os.getcwd(), combine_type='run', base_name='',
         A plot is also generated
 
     """
-    files = [f for f in os.listdir(gather_dir) if 'pkl' in f and 'epoched' in f]
+    files = [f for f in os.listdir(gather_dir) if ('mat' or 'pkl' in f) and 'epoched' in f]
     merged = None
     for f in files:
-        run = load_pkl(os.path.join(gather_dir, f))
+        run = read_epoch(os.path.join(gather_dir, f))
+
         if merged is None:
             merged = Epoched(run.n_categs, run.n_samples, 0)
             merged.names = run.names
@@ -37,23 +38,18 @@ def merge(gather_dir=os.getcwd(), combine_type='run', base_name='',
             merged.matrix = np.concatenate((merged.matrix, avg), axis=2)
         elif combine_type == 'trial':
             merged.matrix = np.concatenate((merged.matrix, run.matrix), axis=2)
-
     spio.savemat(make_path('merged', '.mat', out_dir=out_dir,
                            base_name=base_name), {'merged': merged})
     save_pkl(make_path('merged', '.pkl', out_dir=out_dir,
                        base_name=base_name), merged)
-    plot_conds(merged, **params)
+    plot_conds(merged, out_dir=out_dir, base_name=base_name, **params)
 
 
 
-#TODO set the new params and read them...
 if __name__ == '__main__':
     params = get_params(sys.argv)
-
-    #TODO for testing purposes, delete it later.
     params["gather_dir"] = select_folder()
     params["out_dir"] = params["gather_dir"]
-
     params["base_name"] = os.path.basename(os.path.normpath(params["gather_dir"]))
     merge(**params)
     save_params(params)

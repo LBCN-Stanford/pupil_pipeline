@@ -1,7 +1,7 @@
 import scipy.io as spio
 import numpy as np
 from readpupil import read_pupil
-from misc import make_path, save_pkl, select_files
+from misc import make_path, save_pkl, select_files, load_pkl
 import sys
 import warnings
 from params import get_params
@@ -192,12 +192,25 @@ def epoch(pupil_data, events_path, sample_rate=250, epoch_time=200,
 
     return epoched
 
+def read_epoch(fname):
+    from epoch import Epoched
+    if '.pkl' in fname:
+        return load_pkl(fname)
+    elif '.mat' in fname:
+        matfile = spio.loadmat(fname, squeeze_me=True, struct_as_record=False)
+        mat_epoched = matfile['epoched']
+        epoched = Epoched(0,(0,0),0)
+        epoched.__dict__.update(mat_epoched.__dict__)
+        return epoched
+
+
 
 # Testing purposes
 if __name__ == '__main__':
-    pupil_path = select_files('preprocessed pupil file')[0]
-    pupil_data = read_pupil(pupil_path)
-    events_path = select_files('events file: ')[0]
-    params = get_params(sys.argv)
-    params['out_dir'] = os.path.dirname(pupil_path)
-    epoch(pupil_data, events_path, **params)
+    # pupil_path = select_files('preprocessed pupil file')[0]
+    # pupil_data = read_pupil(pupil_path)
+    # events_path = select_files('events file: ')[0]
+    # params = get_params(sys.argv)
+    # params['out_dir'] = os.path.dirname(pupil_path)
+    # epoch(pupil_data, events_path, **params)
+    read_epoch('/home/harrysha/Dropbox/data/S18_120/Run1/pipeline_output_S18_120-pupil_data-run1_2018-04-08 09:45:14.427715/epoched_S18_120-pupil_data-run1.mat')

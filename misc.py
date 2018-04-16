@@ -3,7 +3,7 @@ from tkinter import filedialog
 import os
 import datetime
 import pickle
-
+import scipy.io as spio
 
 def get_files(choose_files=True, **params):
     if choose_files:

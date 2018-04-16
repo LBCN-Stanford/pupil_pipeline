@@ -11,7 +11,7 @@ params['base_name'] = ''
 params['out_dir'] = ''
 
 # True if you want to select the files with a GUI
-params['choose_files'] = False
+params['choose_files'] = True
 
 # List of paths for pupil_data relative to the main folder
 # Note: only effective if choose_files is False
@@ -45,17 +45,17 @@ params['sample_rate'] = 250
 # Examples: params['baseline_type'] = 'no'
 # params['baseline_type'] = 200
 # params['baseline_type'] = ('cond', 1, duration)
-params['baseline_type'] = 200
+params['baseline_type'] = 'no'
 
 # Number of milliseconds to epoch after trial onset (ms)
-params['epoch_time'] = 2500
+params['epoch_time'] = 200
 
 # Number of milliseconds prior to epoch to show
 # Multiple of 4 please :)
-params['back_time'] = 200
+params['back_time'] = 60
 
 # List of conditions to be plotted, or 'all' for all conditions
-params['conds_to_plot'] = [1, 2, 3]
+params['conds_to_plot'] = [1, 2, 3, 4, 5, 6, 0]
 
 # List of colors (in hex) to plot. NOTE you need to change this
 # if you're plotting more than 10 conditions.
@@ -66,7 +66,7 @@ params['plot_colors'] = ['#e218d8', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
 params['plot_style'] = ['-' for i in range(10)]
 
 # True to plot error bars (SE) and False for no error bars.
-params['plot_error'] = True
+params['plot_error'] = False
 
 # Title of the plot
 params['plot_title'] = 'Pupil Diameter'

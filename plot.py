@@ -80,7 +80,6 @@ def plot_conds(epoched, conds_to_plot='all', plot_colors=def_cols,
     plt.title(plot_title)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
-
     plt.savefig(make_path(plot_fname, '.png', out_dir=out_dir, base_name=base_name),
                 bbox_inches='tight', dpi=600)
 
