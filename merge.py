@@ -1,6 +1,6 @@
 import sys
 from params import save_params, get_params
-from misc import select_folder, load_pkl, save_pkl, make_path
+from misc import select_folder, save_pkl, make_path
 from epoch import Epoched, read_epoch
 from plot import plot_conds
 import os

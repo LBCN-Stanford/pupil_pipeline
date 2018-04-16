@@ -6,7 +6,6 @@ the *epoched*pkl files in a folder in the search folder called 'Gathered'
 '''
 import os
 from shutil import copy2
-import sys
 from misc import select_folder
 
 def gather(parent, out_dir, ext='mat'):
