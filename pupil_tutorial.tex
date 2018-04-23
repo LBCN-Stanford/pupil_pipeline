@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathdots}
+\usepackage{fancyhdr}
+\usepackage{cancel}
+\usepackage{MnSymbol,wasysym}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage[bookmarks]{hyperref}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\usepackage{titling}
+\setlength{\droptitle}{-8em}
+% \predate{} \postdate{} \date{}
+\usepackage{parskip}
+\linespread{1.3}
+\usepackage[default]{lato}
+\usepackage{xcolor}
+\definecolor{sectioncolor}{HTML}{0b2451}
+\definecolor{subsectioncolor}{HTML}{000000}
+\usepackage{sectsty}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclareMathOperator{\E}{\mathbf{E}}
+\DeclareMathOperator{\Q}{\mathbb{Q}}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\N}{\mathbb{N}}
+% \renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\theenumi}{\roman{enumi}}
+
+\setcounter{secnumdepth}{0}
+
+\rhead{Harry Sha}
+\lhead{\today}
+\rfoot{Page \thepage}
+
+\title{\textcolor{sectioncolor}{Pupil Tutorial}}
+\author{Harry Sha}
+\date{\today}
+
+\begin{document}
+\clearpage\maketitle
+Please contact harry2@stanford.edu with any problems/questions about this pipeline.
+\tableofcontents
+\thispagestyle{empty}
+
+\sectionfont{\color{sectioncolor}}
+\subsectionfont{\color{subsectioncolor}}
+
+\section{Setting Up}
+\begin{enumerate}
+\item Download python 3.6 from anaconda from this link: \href{https://www.anaconda.com/download/}{https://www.anaconda.com/download/}
+\item Follow this link: \href{https://github.com/harrysha1029/pupil}{https://github.com/harrysha1029/pupil} and clone the repository.
+\item Put data in a convenient folder, preferably the same one, especially if you plan to run multiple files at the same time.
+\item Change behavioral data into the events format
+\end{enumerate}
+
+\section{Events Format}
+Behavioral data is used to epoch the pupil data. For this to work, the pupil pipeline requires this data to be of a specific format which is described in this section.
+
+The behavioral file should be a MATLAB (.mat) file containing a variable named first, and another variable named events. first should be a float marking the time of the first onset of the behavioral data. This is aligned to
+
+
+
+\section{Parameters}
+The
+
+
+\section{Running}
+To run the code:
+\begin{enumerate}
+\item Open terminal (mac, linux) or command prompt (windows)
+\item cd into the pipeline
+\item \begin{lstlisting}
+python pupil_pipeline.py <parameters>
+\end{lstlisting}
+where $<$parameters$>$ is replaced with the name of your parameters file.
+\end{enumerate}If no parameters file is provided, the pipeline will read from parameters\_default.py
+
+\section{Outputs}
+
+\section{Merging}
+
+\section{Explanation of interpolation method}
+
+\end{document}
