@@ -74,7 +74,7 @@ The behavioral file should be a MATLAB (.mat) file containing a variable named f
 
 
 \section{Parameters}
-The
+Check out the parameters.py file for details about the parameters that are taken by the pipeline.
 
 
 \section{Running}
@@ -91,6 +91,18 @@ where $<$parameters$>$ is replaced with the name of your parameters file.
 \section{Outputs}
 
 \section{Merging}
+\subsection{Gather}
+gather.py is a tool that helps extract all the epoched files (either .pkl or .mat) in all the subfolders of a selected folder.
+
+\subsection{Merge}
+Run merge.py like the pipeline \begin{lstlisting}
+python merge.py <parameters>
+\end{lstlisting}
+
+When prompted, select the folder containing all the epoched files that you are analysing. 
+
+
+
 
 \section{Explanation of interpolation method}
 
