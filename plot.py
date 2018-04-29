@@ -18,7 +18,8 @@ def plot_conds(epoched, conds_to_plot='all', plot_colors=def_cols,
                plot_style=def_style, plot_error=True, sample_rate=250,
                back_time=60, plot_title='Pupil Diameter',
                plot_fname='pupil_diameter_plot',
-               out_dir='', base_name='', y_label='', **params):
+               out_dir='', base_name='', y_label='',
+               plot_nums=True, **params):
     '''
     Averages across trials in each condition and saves a plot
 
@@ -69,10 +70,13 @@ def plot_conds(epoched, conds_to_plot='all', plot_colors=def_cols,
             ax.fill_between(x, y - err, y + err,
                             alpha=0.25, color=plot_colors[count])
 
-
+    num_plotted = [x-y for x, y in zip(epoched.num_trials, epoched.num_rejected)]
+    if plot_nums:
+        plot_title += '\n # trials plotted: '+ str(num_plotted)
     # Formatting...
     ax.set_xlabel('Time (ms)')
     ax.set_ylabel(y_label)
+    plt.axvline(x=0,lw=0.5, color='0')
     plt.xlim((x[0], x[-1]))
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.9, box.height])
@@ -82,6 +86,8 @@ def plot_conds(epoched, conds_to_plot='all', plot_colors=def_cols,
     ax.spines['right'].set_visible(False)
     plt.savefig(make_path(plot_fname, '.png', out_dir=out_dir, base_name=base_name),
                 bbox_inches='tight', dpi=600)
+    # TODO in the plot include info on how many trials were plotted.
+    # TODO Plot a vertical line @ 0.
 
 
 if __name__ == '__main__':
