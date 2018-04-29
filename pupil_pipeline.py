@@ -14,15 +14,16 @@ if __name__ == '__main__':
     eye_paths, events_path = get_files(**params)
     assert len(eye_paths) == len(
         events_path), 'You must select the same number of pupil and event files.'
-
     t0 = time.time()
     for eye_path, events_path in zip(eye_paths, events_path):
         folder_setup(eye_path, params)
+        print(params['out_dir'])
         pupil_data = read_pupil(eye_path)
         qualitycheck(pupil_data, **params)
         preprocess(pupil_data, **params)
-
         epoched = epoch(pupil_data, events_path, **params)
+        # TODO in the plot include info on how many trials were plotted.
+        # TODO Plot a vertical line @ 0.
         plot_conds(epoched, **params)
         save_params(params)
 

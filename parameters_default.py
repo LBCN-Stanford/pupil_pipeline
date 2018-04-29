@@ -1,13 +1,5 @@
 params = {}
 
-# Outputs of the pipeline will contain this as a substring
-# Use '' to have it be set automatically
-params['base_name'] = ''
-
-# Outputs of the pipeline will contain this as a substring
-# Use '' to have it be set automatically
-params['out_dir'] = ''
-
 # True if you want to select the files with a GUI
 params['choose_files'] = True
 
@@ -24,7 +16,7 @@ params['impossible_upper'] = 5
 # Filter samples below this value (mm)
 params['impossible_lower'] = 1.5
 
-params['normalize'] = True
+params['normalize'] = False 
 
 # Sections with zeros that are below this threshold will be interpolated (ms)
 params['max_blink_time'] = 500
@@ -52,7 +44,7 @@ params['epoch_time'] = 200
 # Multiple of 4 please :)
 params['back_time'] = 60
 
-# List of conditions (indices) to be plotted, or 'all' for all conditions
+# List of conditions (indices (e.g. [1, 2, 3]) to be plotted, or 'all' for all conditions
 params['conds_to_plot'] = 'all'
 
 # List of colors (in hex) to plot. Google 'color picker to help find hex values'

@@ -23,7 +23,7 @@ params['events_paths'] = ['/home/harrysha/Dropbox/data/S18_120/Run1/events.mat']
 # params['events_paths'] = ['/home/harrysha/Dropbox/data/Orderdata/test.mat']
 
 # Filter samples greater than this value (mm)
-params['impossible_upper'] = 5
+params['impossible_upper'] = 3
 
 # Filter samples below this value (mm)
 params['impossible_lower'] = 1.5
