@@ -67,6 +67,9 @@ params['y_label'] = 'Pupil diameter (mm)'
 # File name of the plot
 params['plot_fname'] = 'pupil_diameter_plot'
 
+# True if you want to include number of trials plotted in the plot
+params['plot_nums'] = False
+
 # Used in merge. 'trial' to combine at a trial level. i.e. imagine all the
 # trials came from a single run. 'run' to combine at the run level (combined
 # the averages)
