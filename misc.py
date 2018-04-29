@@ -40,12 +40,10 @@ def folder_setup(eye_path, params):
     pipeline
     '''
     print('\nSetting up the folder...\n')
-    if params['base_name'] == '':
-        params['base_name'] = os.path.splitext(os.path.basename(eye_path))[0]
-    if params['out_dir'] == '':
-        out_dir = make_output_folder(
-            os.path.dirname(eye_path), params['base_name'])
-        params['out_dir'] = out_dir
+    params['base_name'] = os.path.splitext(os.path.basename(eye_path))[0]
+    out_dir = make_output_folder(
+        os.path.dirname(eye_path), params['base_name'])
+    params['out_dir'] = out_dir
 
 
 def make_path(name, ext, out_dir='', base_name='', **kwargs):
