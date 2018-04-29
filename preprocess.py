@@ -1,3 +1,4 @@
+import scipy.io as spio
 import numpy as np
 from scipy import interpolate
 from qualitycheck import calculate_stats
@@ -81,6 +82,13 @@ def preprocess(pupil_data, out_dir='', base_name='', normalize=False, **params):
     t0 = pupil_data.Time.iloc[0]
     pupil_data['Time'] = pupil_data.Time.apply(lambda x: x - t0)
     if normalize: normalize_pupil(pupil_data)
-
     pupil_data.to_csv(make_path('preprocessed', '.csv', out_dir=out_dir,
                                 base_name=base_name), index=False)
+    spio.savemat(make_path('preproccessed', '.mat', out_dir=out_dir,
+        base_name=base_name), {'preprocessed_pupil':pupil_data.values})
+    
+    
+
+
+
+
