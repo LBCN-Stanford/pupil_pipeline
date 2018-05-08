@@ -30,7 +30,7 @@ def merge(gather_dir=os.getcwd(), combine_type='run', base_name='',
         if merged is None:
             merged = Epoched(run.n_categs, run.n_samples, 0)
             merged.names = run.names
-            merged.num_events = [0 for i in range(len(run.num_events))]
+            merged.num_trials = [0 for i in range(len(run.num_trials))]
             merged.num_rejected = [0 for i in range(len(run.num_rejected))]
 
         if combine_type == 'run':
@@ -41,8 +41,8 @@ def merge(gather_dir=os.getcwd(), combine_type='run', base_name='',
         elif combine_type == 'trial':
             merged.matrix = np.concatenate((merged.matrix, run.matrix), axis=2)
         
-        if len(run.num_events) == len(merged.num_events):
-            merged.num_events = [x+y for x, y in zip(run.num_events, merged.num_events)]
+        if len(run.num_trials) == len(merged.num_trials):
+            merged.num_trials = [x+y for x, y in zip(run.num_trials, merged.num_trials)]
         if len(run.num_rejected) == len(merged.num_rejected):
             merged.num_rejected = [x+y for x, y in zip(run.num_rejected, merged.num_rejected)] 
     spio.savemat(make_path('merged', '.mat', out_dir=out_dir,
