@@ -22,8 +22,6 @@ if __name__ == '__main__':
         qualitycheck(pupil_data, **params)
         preprocess(pupil_data, **params)
         epoched = epoch(pupil_data, events_path, **params)
-        # TODO in the plot include info on how many trials were plotted.
-        # TODO Plot a vertical line @ 0.
         plot_conds(epoched, **params)
         save_params(params)
 
