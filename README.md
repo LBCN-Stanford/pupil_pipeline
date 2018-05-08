@@ -14,7 +14,7 @@ Behavioral data is used to epoch the pupil data. For this to work, the pupil pip
 The behavioral file should be a MATLAB (.mat) file containing a variable named first, and another variable named events. first should be a float marking the time of the first onset of the behavioral data. This is aligned to the first event in the eye tracking data. events is the same variable that is outputted by the ECoG preprocessing pipeline. TODO described events in more detail..
 
 ## Parameters
-This section describes the ways you can set the options for the pipeline. Parameters are kept in python (.py) files, and are passed as an argument when running the pipeline. The default parameters are kept in parameters_default.py. You can see the available options in this file, and instructions of how they work are in the code comments. To set your own parameters, I suggest making a copy of the default file, changing the contents, and passing the new file as an argument to the pipeline (details below).
+This section describes the ways you can set the options for the pipeline. Parameters are kept in python (.py) files, and are passed as an argument when running the pipeline. The default parameters are kept in parameters_default.py. You can see the available options in this file, and instructions of how they work are in the code comments. To set your own parameters, I suggest making a copy of the default file, changing the contents, and passing the new file as an argument to the pipeline (details below). You will probably want a separate parameters file for each task that you have. 
 
 ## Running the pipeline
 1. Open terminal (mac, linux) or command prompt (windows)
@@ -35,7 +35,7 @@ Running the merge code is just like pipeline
 ```python
 python merge.py <parameters>
 ```
-Note that options for merging are also in the same parameters file. 
+Parameters for merge can be specified in the same file.
 
 The outputs are saved into the folder containing all of the epoched files. 
 
