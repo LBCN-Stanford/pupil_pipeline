@@ -1,9 +1,0 @@
-\contentsline {section}{Setting Up}{1}{section*.2}
-\contentsline {section}{Events Format}{1}{section*.3}
-\contentsline {section}{Parameters}{2}{section*.4}
-\contentsline {section}{Running}{2}{section*.5}
-\contentsline {section}{Outputs}{2}{section*.6}
-\contentsline {section}{Merging}{2}{section*.7}
-\contentsline {subsection}{Gather}{2}{section*.8}
-\contentsline {subsection}{Merge}{2}{section*.9}
-\contentsline {section}{Explanation of interpolation method}{2}{section*.10}
