@@ -1,6 +1,0 @@
-
-DO WORK ON TUTORIAL
-
-- work on tutorial document
-
-- explain interpolation method in tutorial
