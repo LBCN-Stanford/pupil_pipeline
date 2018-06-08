@@ -1,4 +1,4 @@
-# pupil_pipeline hi
+# pupil_pipeline 
 
 ## About
 Hello! This is a pipeline to pre-process and visualize pupil diameter data. Pupil data is first checked for quality (missing data, outliers). A plot of the raw data is saved, and descriptive statistics are calculated. Outliers are removed, and blinks are then filled in using a cubic spline interpolation. The pupil data is then optionally normalized. After this, the pupil data is then epoched according to events and conditions. There are a number of options here including the duration, and various types of baseline correction. Finally, the pupil data is plotted. This pipeline also includes code to combine data from multiple participants or blocks. This code was originally written for Laboratory of Behavioral and Cognitive Neuroscience at Stanford University.
