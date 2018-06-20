@@ -27,8 +27,9 @@ def select_folder(prompt='Select your folder'):
 
 def make_output_folder(path, base):
     '''Creates a folder for the pipeline output'''
-    out = os.path.join(path, 'pipeline_output_' + base +
-                       '_' + str(datetime.datetime.now()))
+    folder_name = 'pipeline_output_'+ base + '_' + str(datetime.datetime.now())
+    folder_name = folder_name.replace(' ','_')
+    out = os.path.join(path, folder_name)
     os.makedirs(out)
     return out
 
