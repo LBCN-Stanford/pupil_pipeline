@@ -1,3 +1,9 @@
+"""
+File: epoch.py
+Author: Harry Sha
+Description: Defines the Epoched class, and implements functions that epoch data according to event (stimuli) timing.
+"""
+
 import scipy.io as spio
 import numpy as np
 from readpupil import read_pupil
@@ -38,6 +44,17 @@ def read_events(fname, p_first):
 
 
 def time_to_samples(time, sample_rate=250):
+    """
+    Converts time to number of samples
+
+    Arguments
+        time <float>: amount of time in milliseconds
+        
+        sample_rate <int>: sample rate of the eyetracker
+
+    Returns
+        Number of samples
+    """
     return int(sample_rate * time / 1000)
 
 
@@ -45,13 +62,36 @@ def get_nsamples(sample_rate=250, epoch_time=200, back_time=60, **params):
     '''
     Returns the number of samples to epoch given the sample_rate
     and epoch time in milliseconds.
+
+    Arguments: 
+        sample_rate <int> : Sample rate of the recording (hz)
+
+        epoch_time <int> :  Time to record after the stimuli onset (ms)
+
+        back_time <int> :   Time to record before the stimuli onset (ms)
+
+    Returns
+        A tuple:
+        (number of samples before onset, number of samples after the onset)
+        
     '''
-    return (int(sample_rate * back_time / 1000),
-            int(sample_rate * epoch_time / 1000))
+    return (time_to_samples(back_time, sample_rate),
+            time_to_samples(epoch_time, sample_rate))
 
 
-def get_nearest_ind(pupil_events, time, threshold=20):
-    '''Finds the pupil event with the nearest start time to time'''
+def get_nearest_ind(pupil_events, time):
+    '''
+    Finds the pupil event with the nearest start time to time
+
+    Arguments: 
+        pupil_events <DataFrame>:   The pupil DataFrame as read in by read_pupil.py
+
+        time <float>:   Time of the stimulus onset
+
+    Returns: 
+        Index of the nearest pupil event
+    
+    '''
     difference = np.abs(pupil_events.Time - time)
     # if difference.min() > threshold:
     #     print('WARNING the nearest index in the pupil data to your event '\
@@ -67,13 +107,20 @@ class Epoched:
         matrix: (n_categs x n_samples x n_trials) of pupil
                 diameter data. First dimension is the condition
                 second is the 'time' and third is the trial
-        names: a list of names of conditions
-        num_rejected: a list of numbers of rejected trials for each condition
-        num_trials: a list of number of number of trials in each condition
-        n_categs: number of categories
-        n_forwardsamples: number of samples forward
-        n_backsamples: number of samples before onset
-        total_samples: total number of samples per epoch
+
+        names <list str>:   a list of names of conditions
+
+        num_rejected <list int>:    a list of indices of rejected trials for each condition
+
+        num_trials <list int>:  a list of number of number of trials in each condition
+
+        n_categs <int>: number of categories
+
+        n_forwardsamples <int>: number of samples forward
+
+        n_backsamples <int>:    number of samples before onset
+
+        total_samples <int>:    total number of samples per epoch
     """
 
     def __init__(self, n_categs, n_samples, n_trials):
@@ -89,6 +136,18 @@ class Epoched:
 
 
 def get_baseline(pupil_data, onset, baseline_type='no', sample_rate=250, bl_events=None):
+    """
+    Arguments
+         pupil_data <DataFrame> : Pupil data as returned by readpupil.py
+         
+         onset <int> :  Index at which the behavioral data occurred
+
+         base_line_type :   see parameters.py
+
+         bl_events : A list of 
+
+    Returns
+    """
     if baseline_type == 'no':
         return 0
     elif type(baseline_type) == int:
@@ -113,6 +172,17 @@ def get_baseline(pupil_data, onset, baseline_type='no', sample_rate=250, bl_even
 
 
 def get_baseline_events(pupil_events, category):
+    """
+    Retrieves the events that are used for baseline
+
+    Arguments
+        pupil_events <DataFrame>:   The pupil DataFrame as read in by read_pupil.py
+        
+        category <str> : Name of the condition used as baseline
+
+    Returns
+        A DataFrame containing only the events used for baseline
+    """
     onsets = list(map(lambda x: get_nearest_ind(
         pupil_events, x), category.start))
     return pupil_events.loc[onsets]
@@ -124,15 +194,19 @@ def epoch(pupil_data, events_path, sample_rate=250, epoch_time=200,
     Epochs the pupil_data according to behavioural events specified
     by the events file in events_path.
 
-    Parameters:
+    Arguments:
         pupil_data: A pupil_data object like the one loaded by read_pupil
-        events_path: A path to the events file (see tutorial)
-        sample_rate: The sample rate of your pupil recording
-        epoch_time: Time in ms to epoch
-        back_time: Time before the event to plot
+
+        events_path <str>: A path to the events file (see tutorial)
+
+        sample_rate <int>: The sample rate of your pupil recording
+
+        epoch_time <int>: Time in ms to epoch
+
+        back_time <int>: Time before the event to plot
 
     Returns:
-        epoched: an Epoched object defined above
+        epoched <Epoched>: an Epoched object defined above
     '''
 
     print('\nEpoching...\n')
@@ -193,6 +267,17 @@ def epoch(pupil_data, events_path, sample_rate=250, epoch_time=200,
     return epoched
 
 def read_epoch(fname):
+    """
+    Loads in an Epoched object. The file can either be a 
+    .pkl (python) file or a (.mat) MATLAB file.
+
+    Arguments
+        fname <str> : Path to the file containing an Epoched object 
+
+    Returns: the Epoched object
+
+    """
+
     from epoch import Epoched
     if '.pkl' in fname:
         return load_pkl(fname)
@@ -203,14 +288,3 @@ def read_epoch(fname):
         epoched.__dict__.update(mat_epoched.__dict__)
         return epoched
 
-
-
-# Testing purposes
-if __name__ == '__main__':
-    # pupil_path = select_files('preprocessed pupil file')[0]
-    # pupil_data = read_pupil(pupil_path)
-    # events_path = select_files('events file: ')[0]
-    # params = get_params(sys.argv)
-    # params['out_dir'] = os.path.dirname(pupil_path)
-    # epoch(pupil_data, events_path, **params)
-    read_epoch('/home/harrysha/Dropbox/data/S18_120/Run1/pipeline_output_S18_120-pupil_data-run1_2018-04-08 09:45:14.427715/epoched_S18_120-pupil_data-run1.mat')

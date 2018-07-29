@@ -2,6 +2,16 @@
 Classes to help create events files in python
 These may be useful in creating the behavioral data file if
 you collected your data in python instead of MATLAB
+
+===Example usage===
+
+fname = 'behavioral.mat'
+x = events(['yourdata.txt'])
+spio.savemat(fname, {'events':x, 'first':x.first})
+
+# Load back into python
+x = spio.loadmat(fname, squeeze_me=True, struct_as_record=False)
+
 """
 
 import scipy.io as spio
@@ -18,10 +28,3 @@ class events:
         self.first = None # Set this
         
         # Fill self.categories.start with the onset times (use seconds)!
-        
-fname = 'behavioral.mat'
-x = events(['yourdata.txt'])
-spio.savemat(fname, {'events':x, 'first':x.first})
-
-## To load it back into python
-#x= spio.loadmat(fname, squeeze_me=True, struct_as_record=False)
